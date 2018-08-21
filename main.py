@@ -18,7 +18,7 @@ from keboola import docker
 # cfg = docker.Config('/data/')
 # refresh_token = cfg.get_parameters()['#refresh_token']
 cfg = docker.Config('/data/')
-API_token = cfg.get_parameters()['api_token']
+API_token = cfg.get_parameters()['#api_token']
 # load_mode = cfg.get_parameters()['processing_mode']
 
 parameters = {'authtoken': API_token,
@@ -147,7 +147,8 @@ for counter, i in enumerate(tasks_info['link.timesheet.url']):
 
 
 ## Write extracted data
+projects_info.to_csv('/data/out/tables/projects.csv', index=False)
 timelogs_info.to_csv('/data/out/tables/timelogs.csv', index=False)
 tasks_info.to_csv('/data/out/tables/tasks.csv', index=False)
 tasklists_info.to_csv('/data/out/tables/tasklists.csv', index=False)
-projects_info.to_csv('/data/out/tables/projects.csv', index=False)
+
