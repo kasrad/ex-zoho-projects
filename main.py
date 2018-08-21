@@ -18,7 +18,7 @@ from keboola import docker
 # cfg = docker.Config('/data/')
 # refresh_token = cfg.get_parameters()['#refresh_token']
 cfg = docker.Config('/data/')
-API_token = cfg.get_parameters()['api_token']
+API_token = cfg.get_parameters()['#api_token']
 # load_mode = cfg.get_parameters()['processing_mode']
 
 parameters = {'authtoken': API_token,
