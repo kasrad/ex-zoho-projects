@@ -155,7 +155,7 @@ for counter, i in enumerate(projects_info['link.milestone.url']):
     tasklists_info = get_data_milestones(target_df=milestones_info, url=i,
                                          endpoint='milestones', to_append=projects_info['id'].iloc[counter])
     time.sleep(1)
-    
+
 #Extract data for tasks
 tasks_info = pd.DataFrame(np.zeros((0,0)))
 for counter, i in enumerate(tasklists_info['link.task.url']):
@@ -178,4 +178,5 @@ projects_info.to_csv('/data/out/tables/projects.csv', index=False)
 timelogs_info.to_csv('/data/out/tables/timelogs.csv', index=False)
 tasks_info.to_csv('/data/out/tables/tasks.csv', index=False)
 tasklists_info.to_csv('/data/out/tables/tasklists.csv', index=False)
+milestones_info.to_csv('/data/out/tables/milestones.csv', index=False)
 
