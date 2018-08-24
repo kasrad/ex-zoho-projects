@@ -66,6 +66,26 @@ def get_data_tasklists(target_df, endpoint, to_append, url = ''):
         target_df = target_df.append(df_tmp)
   
     return(target_df)
+
+
+def get_data_milestones(target_df, endpoint, to_append, target_id='', url=''):
+
+    req = requests.get(url=url, params=parameters)
+
+    if req.status_code != 200:
+        print('Warning: The returned status code is: ' + str(req.status_code))
+        return(target_df)
+
+    else:
+        df_tmp = json_normalize(req.json()[endpoint])
+        df_tmp['parent'] = to_append
+
+    if target_df.empty:
+        target_df = df_tmp
+    else:
+        target_df = target_df.append(df_tmp)
+
+    return(target_df)
         
 def get_data_tasks(target_df, endpoint, to_append, url = ''):
     
@@ -129,6 +149,13 @@ for counter, i in enumerate(projects_info['link.tasklist.url']):
                               endpoint = 'tasklists', to_append = projects_info['id'].iloc[counter])
     time.sleep(1)
 
+#Extract data for milestones
+milestones_info = pd.DataFrame(np.zeros((0, 0)))
+for counter, i in enumerate(projects_info['link.milestone.url']):
+    tasklists_info = get_data_milestones(target_df=milestones_info, url=i,
+                                         endpoint='milestones', to_append=projects_info['id'].iloc[counter])
+    time.sleep(1)
+    
 #Extract data for tasks
 tasks_info = pd.DataFrame(np.zeros((0,0)))
 for counter, i in enumerate(tasklists_info['link.task.url']):
