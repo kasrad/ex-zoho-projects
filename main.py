@@ -142,12 +142,14 @@ for i in base_df['link.self.url']:
                                       to_append='Keboola')
     time.sleep(1)
 
+print('projects extracted')
 #Extract data for tasklists
 tasklists_info = pd.DataFrame(np.zeros((0,0)))
 for counter, i in enumerate(projects_info['link.tasklist.url']):
     tasklists_info = get_data_tasklists(target_df = tasklists_info, url = i,
                               endpoint = 'tasklists', to_append = projects_info['id'].iloc[counter])
     time.sleep(1)
+print('tasklists extracted')
 
 #Extract data for milestones
 milestones_info = pd.DataFrame(np.zeros((0, 0)))
@@ -156,6 +158,7 @@ for counter, i in enumerate(projects_info['link.milestone.url']):
                                          endpoint='milestones', to_append=projects_info['id'].iloc[counter])
     time.sleep(1)
 
+print('milestones extracted')
 #Extract data for tasks
 tasks_info = pd.DataFrame(np.zeros((0,0)))
 for counter, i in enumerate(tasklists_info['link.task.url']):
@@ -163,7 +166,7 @@ for counter, i in enumerate(tasklists_info['link.task.url']):
                                 endpoint = 'tasks',
                                 to_append = tasklists_info['id'].iloc[counter])
     time.sleep(1)
-
+print('tasks extracted')
 #Extract data for timelogs
 timelogs_info = pd.DataFrame(np.zeros((0,0)))
 for counter, i in enumerate(tasks_info['link.timesheet.url']):
@@ -171,7 +174,7 @@ for counter, i in enumerate(tasks_info['link.timesheet.url']):
                                 endpoint = 'timelogs',
                                 to_append = tasks_info['id'].iloc[counter])
     time.sleep(1)
-
+print('timelogs extracted')
 
 ## Write extracted data
 projects_info.to_csv('/data/out/tables/projects.csv', index=False)
