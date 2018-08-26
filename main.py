@@ -20,7 +20,6 @@ from keboola import docker
 cfg = docker.Config('/data/')
 API_token = cfg.get_parameters()['#api_token']
 # load_mode = cfg.get_parameters()['processing_mode']
-
 parameters = {'authtoken': API_token,
               'flag': 'internal'}
 
@@ -154,12 +153,12 @@ print('tasklists extracted')
 #Extract data for milestones
 milestones_info = pd.DataFrame(np.zeros((0, 0)))
 for counter, i in enumerate(projects_info['link.milestone.url']):
-    tasklists_info = get_data_milestones(target_df=milestones_info, url=i,
+    milestones_info = get_data_milestones(target_df=milestones_info, url=i,
                                          endpoint='milestones', to_append=projects_info['id'].iloc[counter])
     time.sleep(1)
-
 print('milestones extracted')
-#Extract data for tasks
+
+ #Extract data for tasks
 tasks_info = pd.DataFrame(np.zeros((0,0)))
 for counter, i in enumerate(tasklists_info['link.task.url']):
     tasks_info = get_data_tasks(target_df = tasks_info, url = i,
