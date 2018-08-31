@@ -185,7 +185,7 @@ for i in range(tasks_info.shape[0]):
     if userstasks_info.empty:
         userstasks_info = df_tmp
     else:
-        userstasks_info = userstasks.append(df_tmp)
+        userstasks_info = userstasks_info.append(df_tmp)
 print('userstasks extracted')
 
 
