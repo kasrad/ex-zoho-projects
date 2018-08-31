@@ -175,10 +175,23 @@ for counter, i in enumerate(tasks_info['link.timesheet.url']):
     time.sleep(1)
 print('timelogs extracted')
 
+userstasks_info = pd.DataFrame(np.zeros((0,0)))                           
+for i in range(tasks_info.shape[0]):
+    df_tmp = json_normalize(tasks_info['details.owners'].iloc[i])
+    df_tmp['task_id'] = tasks_info['id'].iloc[i]
+                           
+    if userstasks_info.empty:
+        userstasks_info = df_tmp
+    else:
+        userstasks_info = users_tasks.append(df_tmp)
+print('userstasks extracted')
+
+
 ## Write extracted data
 projects_info.to_csv('/data/out/tables/projects.csv', index=False)
 timelogs_info.to_csv('/data/out/tables/timelogs.csv', index=False)
 tasks_info.to_csv('/data/out/tables/tasks.csv', index=False)
 tasklists_info.to_csv('/data/out/tables/tasklists.csv', index=False)
 milestones_info.to_csv('/data/out/tables/milestones.csv', index=False)
+userstasks_info.to_csv('/data/out/tables/users_tasks.csv', index=False)
 
