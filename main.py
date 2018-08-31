@@ -146,7 +146,8 @@ print('projects extracted')
 tasklists_info = pd.DataFrame(np.zeros((0,0)))
 for counter, i in enumerate(projects_info['link.tasklist.url']):
     tasklists_info = get_data_tasklists(target_df = tasklists_info, url = i,
-                              endpoint = 'tasklists', to_append = projects_info['id'].iloc[counter])
+                              endpoint = 'tasklists',
+                              to_append = projects_info['id'].iloc[counter])
     time.sleep(1)
 print('tasklists extracted')
 
@@ -154,7 +155,8 @@ print('tasklists extracted')
 milestones_info = pd.DataFrame(np.zeros((0, 0)))
 for counter, i in enumerate(projects_info['link.milestone.url']):
     milestones_info = get_data_milestones(target_df=milestones_info, url=i,
-                                         endpoint='milestones', to_append=projects_info['id'].iloc[counter])
+                                         endpoint='milestones',
+                                         to_append=projects_info['id'].iloc[counter])
     time.sleep(1)
 print('milestones extracted')
 
