@@ -19,9 +19,11 @@ from keboola import docker
 # refresh_token = cfg.get_parameters()['#refresh_token']
 cfg = docker.Config('/data/')
 API_token = cfg.get_parameters()['#api_token']
+status = cfg.get_parameters()['status']
 # load_mode = cfg.get_parameters()['processing_mode']
 parameters = {'authtoken': API_token,
-              'flag': 'internal'}
+              'flag': 'internal',
+              'status': status}
 
 
 #==============================================================================
