@@ -1,0 +1,20 @@
+{
+  "title": "Zoho Projects API",
+  "type": "object",
+  "required": [
+    "#API_token",
+    "status"
+  ],
+  "properties": {
+    "#refresh_token": {
+      "title": "API token",
+      "type": "string",
+      "propertyOrder": 1
+    },
+    "client_id": {
+      "title": "status",
+      "type": "string",
+      "propertyOrder": 2
+    }
+  }
+}
