@@ -6,12 +6,12 @@
     "status"
   ],
   "properties": {
-    "#refresh_token": {
+    "#api_token": {
       "title": "API token",
       "type": "string",
       "propertyOrder": 1
     },
-    "client_id": {
+    "status": {
       "title": "status",
       "type": "string",
       "propertyOrder": 2
