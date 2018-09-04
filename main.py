@@ -145,6 +145,10 @@ for i in base_df['link.self.url']:
 
 print('projects extracted')
 #Extract data for tasklists
+
+parameters = {'authtoken': API_token,
+              'flag': 'internal'}
+              
 tasklists_info = pd.DataFrame(np.zeros((0,0)))
 for counter, i in enumerate(projects_info['link.tasklist.url']):
     tasklists_info = get_data_tasklists(target_df = tasklists_info, url = i,
